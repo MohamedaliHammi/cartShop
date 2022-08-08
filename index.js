@@ -1,5 +1,5 @@
 const shop = document.getElementById('shop');
-let shopCart = [];
+let shopCart = JSON.parse(localStorage.getItem("data")) || [] //* to set the storage in the browser view the || to prevent errors  in case we don't have data
 let shopItemData = [
 {
     id: "ProductNum1",
@@ -71,7 +71,7 @@ let increment = (id) =>{
     }else {
         search.item += 1;
     }
-   
+   localStorage.setItem("data", JSON.stringify(shopCart));
 // console.log(shopCart);
 update(selectedProduct.id);
 };
@@ -88,7 +88,8 @@ let decrement = (id) => {
     else {
         search.item -= 1;
     }
-   
+    //* setting the item in the local storage
+    localStorage.setItem("data", JSON.stringify(shopCart));
   //console.log(shopCart)
   update(selectedProduct.id);
 };
